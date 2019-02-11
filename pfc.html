@@ -1,0 +1,123 @@
+<head><script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<script type="text/javascript">
+
+    function CpuPlay() {
+
+
+
+        function playerSelection() {
+            //joueur = window.prompt("Hey ! Pierre Feuille ou Ciseaux ?", "Tapes ici !");
+            console.log("joueur :", joueur);
+
+        }
+
+
+
+        resjoueur = playerSelection();
+        resordi = computerSelection(ordi);
+
+
+
+    }
+
+
+
+
+
+</script>
+
+<html>
+
+
+<select id="choixjeu">
+    <ul>
+        <option value="pierre">pierre</option>
+        <option value="feuille">feuille</option>
+        <option value="ciseaux">ciseaux</option>
+    </ul>
+</select>
+
+<div>VOUS AVEZ CHOISI :
+
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            $('#choixjeu').on('change', function () {
+        
+                var joueur = $("#choixjeu option:selected").text();
+                document.querySelector('#displaychoixjoueur').innerHTML = joueur;
+
+
+                Choix = ['pierre', 'feuille', 'ciseaux'];
+                ordi = Choix[Math.floor(Math.random() * Choix.length)];
+                document.querySelector('#displaychoixcpu').innerHTML = ordi;
+                if ((ordi == "pierre") && (joueur == "ciseaux")) {
+                    score = "Tu as perdu";
+                }
+                if ((ordi == "feuille") && (joueur == "ciseaux")) {
+                    score = "Tu as gagné";
+                }
+      
+
+                if ((ordi == "ciseaux") && (joueur == "pierre")) {
+                    score = "Tu as gagné";
+                }
+                if ((ordi == "ciseaux") && (joueur == "feuille")) {
+                    score = "Tu as perdu";
+                }
+
+                if ((ordi == "feuille") && (joueur == "pierre")) {
+                    score = "Tu as gagné";
+                }
+                if ((ordi == "feuille") && (joueur == "ciseaux")) {
+                    let score = "Tu as perdu";
+                }
+
+                if ((ordi == "pierre") && (joueur == "feuille")) {
+                    score = "Tu as perdu";
+                }
+               
+
+                if ((ordi == "feuille") && (joueur == "feuille")) {
+                    score = "match nul !";
+                }
+
+                if ((ordi == "pierre") && (joueur == "pierre")) {
+                    score = "match nul !";
+                }
+
+                if ((ordi == "ciseaux") && (joueur == "ciseaux")) {
+                    score = "match nul !";
+                }
+
+                if ((ordi == "") || (joueur == "")) {
+                   score = "tapez quelquechose";
+                }
+
+                document.querySelector('#winner').innerHTML = score;
+
+            });
+        });
+
+
+
+
+
+    </script>
+
+
+    
+
+
+    <span id="displaychoixjoueur"></span>
+</div>
+
+<div>L'ORDINATEUR A CHOISI : <span id="displaychoixcpu"></span></div>
+
+<div>VOUS AVEZ:<b><span id="winner"></span></b></div>
+
+</html>

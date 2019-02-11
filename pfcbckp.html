@@ -1,0 +1,162 @@
+<head></head>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+    function CpuPlay() {
+
+
+
+        function playerSelection() {
+            //joueur = window.prompt("Hey ! Pierre Feuille ou Ciseaux ?", "Tapes ici !");
+            console.log("joueur :", joueur);
+
+        }
+
+
+
+        resjoueur = playerSelection();
+        resordi = computerSelection(ordi);
+
+
+
+        function whowins() {
+            if ((ordi == "pierre") && (joueur == "ciseaux")) {
+                score = "Tu as perdu";
+            }
+            if ((ordi == "feuille") && (joueur == "ciseaux")) {
+                score = "Tu as gagné";
+            }
+            if ((ordi == "ciseaux") && (joueur == "ciseaux")) {
+                score = "match nul !";
+            }
+
+            if ((ordi == "ciseaux") && (joueur == "pierre")) {
+                score = "Tu as gagné";
+            }
+            if ((ordi == "ciseaux") && (joueur == "feuille")) {
+                score = "Tu as perdu";
+            }
+            if ((ordi == "feuille") && (joueur == "feuille")) {
+                score = "match nul !";
+            }
+            if ((ordi == "pierre") && (joueur == "pierre")) {
+                score = "match nul !";
+            }
+
+            if ((ordi == "") || (joueur == "")) {
+                score = "tapez quelquechose";
+            }
+
+
+            //console.log("le score :", score);
+            document.querySelector('#winner').innerHTML = score;
+        }
+
+
+        whowins();
+
+
+    }
+
+
+
+
+
+</script>
+
+<html>
+
+
+<select id="choixjeu">
+    <ul>
+        <option value="pierre">pierre</option>
+        <option value="feuille">feuille</option>
+        <option value="ciseaux">ciseaux</option>
+    </ul>
+</select>
+
+<div>VOUS AVEZ CHOISI :
+
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            $('#choixjeu').on('change', function () {
+                //var optionValue = $(this).val();
+                //var optionText = $('#dropdownList option[value="'+optionValue+'"]').text();
+                var optionText = $("#choixjeu option:selected").text();
+                document.querySelector('#displaychoixjoueur').innerHTML = optionText;
+
+
+
+                Choix = ['pierre', 'feuille', 'ciseaux'];
+                ordi = Choix[Math.floor(Math.random() * Choix.length)];
+                document.querySelector('#displaychoixcpu').innerHTML = ordi;
+
+                if ((ordi == "pierre") && (joueur == "ciseaux")) {
+                    let   score = "Tu as perdu";
+                }
+                if ((ordi == "feuille") && (joueur == "ciseaux")) {
+                    let  score = "Tu as gagné";
+                }
+      
+
+                if ((ordi == "ciseaux") && (joueur == "pierre")) {
+                    let  score = "Tu as gagné";
+                }
+                if ((ordi == "ciseaux") && (joueur == "feuille")) {
+                    let  score = "Tu as perdu";
+                }
+
+                if ((ordi == "feuille") && (joueur == "pierre")) {
+                    let  score = "Tu as gagné";
+                }
+                if ((ordi == "feuille") && (joueur == "ciseaux")) {
+                    let score = "Tu as perdu";
+                }
+
+                if ((ordi == "pierre") && (joueur == "feuille")) {
+                    let  score = "Tu as perdu";
+                }
+               
+
+                if ((ordi == "feuille") && (joueur == "feuille")) {
+                    let score = "match nul !";
+                }
+
+                if ((ordi == "pierre") && (joueur == "pierre")) {
+                    let  score = "match nul !";
+                }
+
+                if ((ordi == "ciseaux") && (joueur == "ciseaux")) {
+                    let  score = "match nul !";
+                }
+
+                if ((ordi == "") || (joueur == "")) {
+                   let  score = "tapez quelquechose";
+                }
+                document.querySelector('#winner').innerHTML = score;
+
+            });
+        });
+
+
+
+
+
+    </script>
+
+
+    
+
+
+    <span id="displaychoixjoueur"></span>
+</div>
+
+<div>L'ORDINATEUR A CHOISI : <span id="displaychoixcpu"></span></div>
+
+<div>VOUS AVEZ:<b><span id="winner"></span></b></div>
+
+</html>
