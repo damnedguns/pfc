@@ -1,9 +1,9 @@
-<head><script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <script type="text/javascript">
 
     function CpuPlay() {
-
 
 
         function playerSelection() {
@@ -22,65 +22,56 @@
     }
 
 
-
-
-
 </script>
 
-<html>
+<script type="text/javascript">
 
-
-<select id="choixjeu">
-    <ul>
-        <option value="pierre">pierre</option>
-        <option value="feuille">feuille</option>
-        <option value="ciseaux">ciseaux</option>
-    </ul>
-</select>
-
-<div>VOUS AVEZ CHOISI :
-
-    <script>
+    function jeu() {
+        var round = 5;
+        scorejoueur = 0;
+        scorecpu = 0;
 
         $(document).ready(function () {
 
-
-
             $('#choixjeu').on('change', function () {
-        
+
                 var joueur = $("#choixjeu option:selected").text();
                 document.querySelector('#displaychoixjoueur').innerHTML = joueur;
 
 
                 Choix = ['pierre', 'feuille', 'ciseaux'];
                 ordi = Choix[Math.floor(Math.random() * Choix.length)];
+
                 document.querySelector('#displaychoixcpu').innerHTML = ordi;
+
                 if ((ordi == "pierre") && (joueur == "ciseaux")) {
-                    score = "Tu as perdu";
+                    score = "Tu as perdu"; scorecpu = ++scorecpu;
+
                 }
                 if ((ordi == "feuille") && (joueur == "ciseaux")) {
-                    score = "Tu as gagné";
+                    score = "Tu as gagné"; scorejoueur = ++scorejoueur;
                 }
-      
+
 
                 if ((ordi == "ciseaux") && (joueur == "pierre")) {
-                    score = "Tu as gagné";
+                    score = "Tu as gagné"; scorejoueur = ++scorejoueur;
+
                 }
                 if ((ordi == "ciseaux") && (joueur == "feuille")) {
-                    score = "Tu as perdu";
+                    score = "Tu as perdu"; scorecpu = ++scorecpu;
                 }
 
                 if ((ordi == "feuille") && (joueur == "pierre")) {
-                    score = "Tu as gagné";
+                    score = "Tu as gagné"; scorejoueur = scorejoueur++;
                 }
                 if ((ordi == "feuille") && (joueur == "ciseaux")) {
-                    let score = "Tu as perdu";
+                    let score = "Tu as perdu"; scorecpu = ++scorecpu;
                 }
 
                 if ((ordi == "pierre") && (joueur == "feuille")) {
-                    score = "Tu as perdu";
+                    score = "Tu as perdu"; scorecpu = ++scorecpu;
                 }
-               
+
 
                 if ((ordi == "feuille") && (joueur == "feuille")) {
                     score = "match nul !";
@@ -95,23 +86,57 @@
                 }
 
                 if ((ordi == "") || (joueur == "")) {
-                   score = "tapez quelquechose";
+                    score = "tapez quelquechose";
                 }
 
                 document.querySelector('#winner').innerHTML = score;
+                roundcount = --round;
+                document.querySelector('#round').innerHTML = roundcount;
 
+                if (roundcount <= 0) {
+                    document.querySelector('#round').innerHTML = "partie terminée"; roundcount = 0;
+                }
+                document.querySelector('#cpuscore').innerHTML = scorecpu;
+                document.querySelector('#playerscore').innerHTML = scorejoueur;
             });
         });
 
 
+        function game(scorecpu, scorejoueur) {
+
+            $(document).ready(function () {
+                //document.querySelector('#cpuscore').innerHTML = scorecpu;
+                //document.querySelector('#playerscore').innerHTML = scorejoueur;
+
+                if (scorejoueur > scorecpu) { document.querySelector('#andthewinneris').innerHTML = "TU AS GAGNE !!"; }
+            });
+        }
+
+        game();
+    }
+
+    jeu();
+
+</script>
+
+<html>
+
+
+<select id="choixjeu">
+    <ul>
+        <option value="pierre">pierre</option>
+        <option value="feuille">feuille</option>
+        <option value="ciseaux">ciseaux</option>
+    </ul>
+</select>
 
 
 
-    </script>
 
 
-    
 
+
+<div>VOUS AVEZ CHOISI :
 
     <span id="displaychoixjoueur"></span>
 </div>
@@ -119,5 +144,15 @@
 <div>L'ORDINATEUR A CHOISI : <span id="displaychoixcpu"></span></div>
 
 <div>VOUS AVEZ:<b><span id="winner"></span></b></div>
+<div>TOURS RESTANTS:<b><span id="round"></span></b></div>
+
+
+<div>points ordi:<b><span id="cpuscore">
+            <script>document.write(scorecpu);</script></span></b></div>
+<div>points joueur:<b><span id="playerscore">
+            <script>document.write(scorejoueur);</script></span></b></div>
+
+
+<div><b><span id="andthewinneris"></span></b></div>
 
 </html>
